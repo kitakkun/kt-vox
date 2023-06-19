@@ -1,5 +1,6 @@
 plugins {
-    kotlin("jvm") version "1.8.21"
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 group = "com.github.kitakkun.ktvox"
@@ -11,6 +12,11 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+    implementation(libs.gson)
+    implementation(libs.retrofit)
+    implementation(libs.retrofitConverterGson)
+    implementation(libs.serialization)
+    implementation(libs.coroutinesTest)
 }
 
 tasks.test {
@@ -18,5 +24,5 @@ tasks.test {
 }
 
 kotlin {
-    jvmToolchain(11)
+    jvmToolchain(17)
 }

@@ -1,0 +1,17 @@
+[versions]
+kotlin = "1.8.21"
+retrofit = "2.9.0"
+gson = "2.8.9"
+serialization = "1.5.1"
+coroutines = "1.7.1"
+
+[libraries]
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref= "retrofit" }
+retrofitConverterGson = { module = "com.squareup.retrofit2:converter-gson", version.ref= "retrofit" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
+coroutinesTest = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+
+[plugins]
+kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
