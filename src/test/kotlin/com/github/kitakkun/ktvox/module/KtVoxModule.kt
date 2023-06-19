@@ -2,6 +2,8 @@ package com.github.kitakkun.ktvox.module
 
 import com.github.kitakkun.ktvox.api.extra.ExtraApi
 import com.github.kitakkun.ktvox.api.query.QueryApi
+import com.github.kitakkun.ktvox.api.query.QueryCreateApi
+import com.github.kitakkun.ktvox.api.query.QueryEditApi
 import com.github.kitakkun.ktvox.api.synth.SynthApi
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -17,6 +19,8 @@ val ktVoxModule = module {
     }
 
     factory<QueryApi> { get<Retrofit>().create() }
+    factory<QueryEditApi> { get<Retrofit>().create() }
+    factory<QueryCreateApi> { get<Retrofit>().create() }
     factory<SynthApi> { get<Retrofit>().create() }
     factory<ExtraApi> { get<Retrofit>().create() }
 }
