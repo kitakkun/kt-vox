@@ -22,20 +22,7 @@ dependencies {
 ### Create a KtVoxApi instance
 
 ```kotlin
-val retrofit = Retrofit.Builder()
-    .baseUrl("http://127.0.0.1:50021")
-    .addConverterFactory(ScalarsConverterFactory.create())
-    .addConverterFactory(GsonConverterFactory.create())
-    .build()
-val ktVoxApi = retrofit.create(KtVoxApi::class.java)
-```
-
-You may need additional dependencies below.
-
-```kotlin
-implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
-implementation("com.squareup.retrofit2:converter-scalars:$retrofitVersion")
-implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+val ktVoxApi = KtVoxApi.initialize("http://127.0.0.1:50021")
 ```
 
 ### Call API
