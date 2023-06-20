@@ -52,7 +52,7 @@ publishing {
             artifactId = "kt-vox"
             version = version
 
-            from(components["java"])
+            from(components["kotlin"])
         }
     }
 }
