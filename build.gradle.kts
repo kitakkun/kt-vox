@@ -4,7 +4,7 @@ plugins {
     `maven-publish`
 }
 
-group = "com.github.kitakkun.ktvox"
+group = "com.github.kitakkun"
 version = "1.0-SNAPSHOT"
 
 repositories {
