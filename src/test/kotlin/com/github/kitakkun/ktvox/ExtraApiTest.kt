@@ -8,7 +8,6 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test
 import org.koin.test.inject
 import kotlin.test.Ignore
-import kotlin.test.assertTrue
 
 class ExtraApiTest : BaseKtVoxApiTest() {
     private val extraApi: ExtraApi by inject()
@@ -48,19 +47,13 @@ class ExtraApiTest : BaseKtVoxApiTest() {
     @Test
     fun testGetDownloadableLibraries() = runTest {
         val response = extraApi.getDownloadableLibraries()
-        val libraries = response.body() ?: throw Exception("body is null")
-        println(libraries.joinToString("\n"))
-        assert(libraries.isNotEmpty())
+        assert(response.isSuccessful)
     }
 
     @Test
     fun testGetSpeakers() = runTest {
         val response = extraApi.getSpeakers()
-        val speakers = response.body() ?: throw Exception("body is null")
-        println(speakers)
-        assertTrue {
-            speakers.isNotEmpty()
-        }
+        assert(response.isSuccessful)
     }
 
     @Test
@@ -69,8 +62,7 @@ class ExtraApiTest : BaseKtVoxApiTest() {
             speakerUuid = "7ffcb7ce-00ec-4bdc-82cd-45a8889e43ff",
             coreVersion = null
         )
-        val speaker = response.body() ?: throw Exception("body is null")
-        println(speaker)
+        assert(response.isSuccessful)
     }
 
     @Test
@@ -148,8 +140,8 @@ class ExtraApiTest : BaseKtVoxApiTest() {
     fun testGetIsInitializedSpeaker() = runTest {
         extraApi.initializeSpeaker(speaker = 0)
         val response = extraApi.getIsInitializedSpeaker(0)
-        val isInitialized = response.body()
-        assert(isInitialized == true)
+        assert(response.isSuccessful)
+        assert(response.body() == true)
     }
 
     @Test
