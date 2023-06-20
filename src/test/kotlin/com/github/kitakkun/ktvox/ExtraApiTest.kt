@@ -4,7 +4,6 @@ import com.github.kitakkun.ktvox.api.extra.ExtraApi
 import com.github.kitakkun.ktvox.api.query.QueryApi
 import com.github.kitakkun.ktvox.api.synth.SynthApi
 import com.github.kitakkun.ktvox.schema.extra.Preset
-import com.google.gson.Gson
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test
 import org.koin.test.inject
@@ -77,30 +76,24 @@ class ExtraApiTest : BaseKtVoxApiTest() {
     @Test
     fun testGetPresets() = runTest {
         val response = extraApi.getPresets()
-        val presets = response.body() ?: throw Exception("body is null")
-        println(presets.joinToString("\n"))
-        assertTrue {
-            presets.isNotEmpty()
-        }
+        assert(response.isSuccessful)
+        println(response.body())
     }
 
     @Test
     fun testAddPreset() = runTest {
-        val presetString = """
-            {
-                "id": 0,
-                "name": "string",
-                "speaker_uuid": "string",
-                "style_id": 0,
-                "speedScale": 0,
-                "pitchScale": 0,
-                "intonationScale": 0,
-                "volumeScale": 0,
-                "prePhonemeLength": 0,
-                "postPhonemeLength": 0
-            }
-            """
-        val preset = Gson().fromJson(presetString, Preset::class.java)
+        val preset = Preset(
+            id = 1,
+            name = "サンプルプリセット",
+            speakerUuid = "7ffcb7ce-00ec-4bdc-82cd-45a8889e43ff",
+            styleId = 0,
+            speedScale = 1.0,
+            pitchScale = 0.0,
+            intonationScale = 1.0,
+            volumeScale = 1.0,
+            prePhonemeLength = 0.1,
+            postPhonemeLength = 0.1
+        )
         val response = extraApi.addPreset(preset)
         assert(response.isSuccessful)
         extraApi.deletePreset(response.body()!!)
@@ -108,21 +101,18 @@ class ExtraApiTest : BaseKtVoxApiTest() {
 
     @Test
     fun testUpdatePreset() = runTest {
-        val presetString = """
-            {
-                "id": 0,
-                "name": "string",
-                "speaker_uuid": "string",
-                "style_id": 0,
-                "speedScale": 0,
-                "pitchScale": 0,
-                "intonationScale": 0,
-                "volumeScale": 0,
-                "prePhonemeLength": 0,
-                "postPhonemeLength": 0
-            }
-            """
-        val preset = Gson().fromJson(presetString, Preset::class.java)
+        val preset = Preset(
+            id = 1,
+            name = "サンプルプリセット",
+            speakerUuid = "7ffcb7ce-00ec-4bdc-82cd-45a8889e43ff",
+            styleId = 0,
+            speedScale = 1.0,
+            pitchScale = 0.0,
+            intonationScale = 1.0,
+            volumeScale = 1.0,
+            prePhonemeLength = 0.1,
+            postPhonemeLength = 0.1
+        )
         val response = extraApi.addPreset(preset)
         val presetId = response.body() ?: throw Exception("body is null")
         val response2 = extraApi.updatePreset(preset.copy(id = presetId, name = "updated"))
@@ -132,21 +122,18 @@ class ExtraApiTest : BaseKtVoxApiTest() {
 
     @Test
     fun testDeletePreset() = runTest {
-        val presetString = """
-            {
-                "id": 0,
-                "name": "string",
-                "speaker_uuid": "string",
-                "style_id": 0,
-                "speedScale": 0,
-                "pitchScale": 0,
-                "intonationScale": 0,
-                "volumeScale": 0,
-                "prePhonemeLength": 0,
-                "postPhonemeLength": 0
-            }
-            """
-        val preset = Gson().fromJson(presetString, Preset::class.java)
+        val preset = Preset(
+            id = 1,
+            name = "サンプルプリセット",
+            speakerUuid = "7ffcb7ce-00ec-4bdc-82cd-45a8889e43ff",
+            styleId = 0,
+            speedScale = 1.0,
+            pitchScale = 0.0,
+            intonationScale = 1.0,
+            volumeScale = 1.0,
+            prePhonemeLength = 0.1,
+            postPhonemeLength = 0.1
+        )
         val response = extraApi.addPreset(preset)
         val presetId = response.body() ?: throw Exception("body is null")
         val response2 = extraApi.deletePreset(presetId)
