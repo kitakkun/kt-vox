@@ -1,5 +1,6 @@
 package com.github.kitakkun.ktvox.module
 
+import com.github.kitakkun.ktvox.api.dictionary.DictApi
 import com.github.kitakkun.ktvox.api.extra.ExtraApi
 import com.github.kitakkun.ktvox.api.query.QueryApi
 import com.github.kitakkun.ktvox.api.query.QueryCreateApi
@@ -25,4 +26,5 @@ val ktVoxModule = module {
     factory<QueryCreateApi> { get<Retrofit>().create() }
     factory<SynthApi> { get<Retrofit>().create() }
     factory<ExtraApi> { get<Retrofit>().create() }
+    factory<DictApi> { get<Retrofit>().create() }
 }
