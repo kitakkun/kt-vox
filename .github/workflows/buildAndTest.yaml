@@ -10,7 +10,7 @@ jobs:
 
     services:
       voicevox:
-        image: hiroshiba/voicevox_engine:0.6.1
+        image: voicevox/voicevox_engine:cpu-ubuntu20.04-latest
         options: --rm --name voicevox -p 50021:50021
         env:
           VOICEVOX_DIR: /app
