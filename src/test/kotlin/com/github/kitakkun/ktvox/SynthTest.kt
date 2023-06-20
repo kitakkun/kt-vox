@@ -15,11 +15,11 @@ class SynthTest : BaseKtVoxApiTest() {
     fun testPostSynthesis() = runTest {
         val query = queryApi.createAudioQuery(
             text = "こんにちは",
-            speaker = 1,
+            speaker = 0,
         ).body()
         assertNotNull(query)
         val response = synthApi.postSynthesis(
-            speaker = 1,
+            speaker = 0,
             audioQuery = query,
         )
         assert(response.isSuccessful)
@@ -36,9 +36,9 @@ class SynthTest : BaseKtVoxApiTest() {
             "おはよう",
             "こんばんは",
         )
-        val queries = messages.mapNotNull { queryApi.createAudioQuery(text = it, speaker = 1).body() }
+        val queries = messages.mapNotNull { queryApi.createAudioQuery(text = it, speaker = 0).body() }
         val response = synthApi.postMultiSynthesis(
-            speaker = 1,
+            speaker = 0,
             audioQueries = queries,
         )
         assert(response.isSuccessful)
@@ -56,12 +56,12 @@ class SynthTest : BaseKtVoxApiTest() {
     fun testPostSynthesisMorphing() = runTest {
         val query = queryApi.createAudioQuery(
             text = "こんにちは",
-            speaker = 1,
+            speaker = 0,
         ).body()
         assertNotNull(query)
         val response = synthApi.postSynthesisMorphing(
-            basespeaker = 1,
-            targetspeaker = 1,
+            baseSpeaker = 0,
+            targetSpeaker = 0,
             morphRate = 0.5,
             audioQuery = query,
         )

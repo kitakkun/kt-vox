@@ -20,10 +20,10 @@ class ExtraApiTest : BaseKtVoxApiTest() {
     fun testConnectWaves() = runTest {
         val query = queryApi.createAudioQuery(
             text = "こんにちは",
-            speaker = 1,
+            speaker = 0,
         ).body() ?: throw Exception("body is null")
         val wave = synthApi.postSynthesis(
-            speaker = 1,
+            speaker = 0,
             audioQuery = query,
         ).body()?.string() ?: throw Exception("body is null")
         val response = extraApi.connectWaves(
@@ -142,7 +142,7 @@ class ExtraApiTest : BaseKtVoxApiTest() {
 
     @Test
     fun testGetIsInitializedSpeaker() = runTest {
-        extraApi.initializeSpeaker(speaker = 1)
+        extraApi.initializeSpeaker(speaker = 0)
         val response = extraApi.getIsInitializedSpeaker(0)
         val isInitialized = response.body()
         assert(isInitialized == true)

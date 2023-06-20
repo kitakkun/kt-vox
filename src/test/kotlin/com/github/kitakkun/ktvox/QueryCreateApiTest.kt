@@ -14,7 +14,7 @@ class QueryCreateApiTest : BaseKtVoxApiTest() {
     fun testCreateAudioQuery() = runTest {
         val response = api.createAudioQuery(
             text = "こんにちは",
-            speaker = 1,
+            speaker = 0,
         )
         assertTrue(response.isSuccessful)
     }

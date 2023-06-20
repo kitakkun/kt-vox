@@ -26,7 +26,7 @@ class QueryEditApiTest : BaseKtVoxApiTest() {
         ).body() ?: throw Exception("body is null")
         println(phrases)
         val response = api.getMoraData(
-            speaker = 1,
+            speaker = 0,
             accentPhrases = phrases,
         )
         assert(response.isSuccessful)
