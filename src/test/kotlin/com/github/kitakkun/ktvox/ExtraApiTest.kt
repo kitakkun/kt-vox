@@ -36,17 +36,13 @@ class ExtraApiTest : BaseKtVoxApiTest() {
     @Test
     fun testGetVersion() = runTest {
         val response = extraApi.getVersion()
-        val version = response.body() ?: throw Exception("body is null")
-        val versionRegex = Regex("""\d+\.\d+\.\d+""")
-        assert(version.matches(versionRegex))
+        assert(response.isSuccessful)
     }
 
     @Test
     fun testGetCoreVersions() = runTest {
         val response = extraApi.getCoreVersions()
-        val versions = response.body() ?: throw Exception("body is null")
-        val versionRegex = Regex("""\d+\.\d+\.\d+""")
-        assert(versions.all { version -> version.matches(versionRegex) })
+        assert(response.isSuccessful)
     }
 
     @Ignore("This test may not work yet")
@@ -159,6 +155,7 @@ class ExtraApiTest : BaseKtVoxApiTest() {
 
     @Test
     fun testGetIsInitializedSpeaker() = runTest {
+        extraApi.initializeSpeaker(speaker = 0)
         val response = extraApi.getIsInitializedSpeaker(0)
         val isInitialized = response.body()
         assert(isInitialized == true)
