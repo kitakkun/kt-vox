@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.katapad:kt-vox:$version")
+    implementation("com.github.kitakkun:kt-vox:$version")
 }
 ```
 
