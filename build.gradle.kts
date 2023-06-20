@@ -50,7 +50,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.github.kitakkun"
             artifactId = "kt-vox"
-            version = "main-SNAPSHOT"
+            version = version
 
             from(components["java"])
         }
