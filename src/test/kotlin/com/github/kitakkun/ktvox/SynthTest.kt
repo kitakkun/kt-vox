@@ -60,8 +60,8 @@ class SynthTest : BaseKtVoxApiTest() {
         ).body()
         assertNotNull(query)
         val response = synthApi.postSynthesisMorphing(
-            baseSpeaker = 1,
-            targetSpeaker = 1,
+            basespeaker = 1,
+            targetspeaker = 1,
             morphRate = 0.5,
             audioQuery = query,
         )
