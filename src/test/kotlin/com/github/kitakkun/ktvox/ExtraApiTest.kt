@@ -77,7 +77,6 @@ class ExtraApiTest : BaseKtVoxApiTest() {
     fun testGetPresets() = runTest {
         val response = extraApi.getPresets()
         assert(response.isSuccessful)
-        println(response.body())
     }
 
     @Test
