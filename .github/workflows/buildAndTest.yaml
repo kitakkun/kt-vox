@@ -1,0 +1,43 @@
+name: Build and Test with Gradle
+
+on:
+  push:
+    branches: [ feature/build_and_test_workflow ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      voicevox:
+        image: hiroshiba/voicevox_engine:0.6.1
+        options: --rm --name voicevox -p 50021:50021
+        env:
+          VOICEVOX_DIR: /app
+          VOICEVOX_CORE_DIR: /app/lib/core
+          HTS_VOICE_PATHS: /app/lib/hts_voice
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'zulu'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
+
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      - name: Test with Gradle
+        run: ./gradlew test
