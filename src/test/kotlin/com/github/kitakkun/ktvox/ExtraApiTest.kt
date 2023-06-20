@@ -4,7 +4,6 @@ import com.github.kitakkun.ktvox.api.extra.ExtraApi
 import com.github.kitakkun.ktvox.api.query.QueryApi
 import com.github.kitakkun.ktvox.api.synth.SynthApi
 import com.github.kitakkun.ktvox.schema.extra.Preset
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test
 import org.koin.test.inject
@@ -97,7 +96,6 @@ class ExtraApiTest : BaseKtVoxApiTest() {
         )
         val response = extraApi.addPreset(preset)
         assert(response.isSuccessful)
-        delay(500)
         extraApi.deletePreset(response.body()!!)
     }
 
@@ -117,10 +115,8 @@ class ExtraApiTest : BaseKtVoxApiTest() {
         )
         val response = extraApi.addPreset(preset)
         val presetId = response.body() ?: throw Exception("body is null")
-        delay(500)
         val response2 = extraApi.updatePreset(preset.copy(id = presetId, name = "updated"))
         assert(response2.isSuccessful)
-        delay(500)
         extraApi.deletePreset(presetId)
     }
 
@@ -139,10 +135,8 @@ class ExtraApiTest : BaseKtVoxApiTest() {
             postPhonemeLength = 0.1
         )
         val response = extraApi.addPreset(preset)
-        delay(500)
         val presetId = response.body() ?: throw Exception("body is null")
         val response2 = extraApi.deletePreset(presetId)
-        delay(500)
         assert(response2.isSuccessful)
     }
 
