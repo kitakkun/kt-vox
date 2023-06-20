@@ -11,11 +11,7 @@ jobs:
     services:
       voicevox:
         image: voicevox/voicevox_engine:cpu-ubuntu20.04-latest
-        options: --rm --name voicevox -p 50021:50021
-        env:
-          VOICEVOX_DIR: /app
-          VOICEVOX_CORE_DIR: /app/lib/core
-          HTS_VOICE_PATHS: /app/lib/hts_voice
+        options: --rm --name voicevox -p "127.0.0.1:50021:50021"
 
     steps:
       - uses: actions/checkout@v2
