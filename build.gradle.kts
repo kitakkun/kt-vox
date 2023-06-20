@@ -15,6 +15,7 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.retrofit)
     implementation(libs.retrofitConverterGson)
+    implementation(libs.retrofitConverterScalars)
     implementation(libs.serialization)
     testImplementation(libs.coroutinesTest)
     testImplementation(libs.koin)
