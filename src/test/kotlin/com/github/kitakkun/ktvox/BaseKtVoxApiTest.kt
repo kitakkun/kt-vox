@@ -19,6 +19,21 @@ abstract class BaseKtVoxApiTest : KoinTest {
     fun setup() {
         container = GenericContainer<Nothing>(imageName)
             .withExposedPorts(50021)
+        // FYI: https://hub.docker.com/layers/voicevox/voicevox_engine/cpu-ubuntu20.04-latest/images/sha256-f210f09d2307acbb0e95457dbe654c8f770df718432f5854b4064e2334c6b98c?context=explore
+        container.setCommand(
+            "gosu",
+            "user",
+            "/opt/python/bin/python3",
+            "./run.py",
+            "--voicelib_dir",
+            "/opt/voicevox_core/",
+            "--runtime_dir",
+            "/opt/onnxruntime/lib",
+            "--host",
+            "0.0.0.0",
+            "--enable_cancellable_synthesis", // experimental api (for test)
+            "--enable_mock" // make tests run faster
+        )
         container.start()
         val host = container.host
         val port = container.getMappedPort(50021)
