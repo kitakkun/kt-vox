@@ -10,11 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    services:
-      voicevox:
-        image: voicevox/voicevox_engine:cpu-ubuntu20.04-latest
-        options: --rm --name voicevox -p "127.0.0.1:50021:50021"
-
     steps:
       - uses: actions/checkout@v2
 
