@@ -88,7 +88,6 @@ class ExtraApiTest : BaseKtVoxApiTest() {
         val response = extraApi.addPreset(preset)
         if (response.code() == 500) return@runTest
         assert(response.isSuccessful)
-        extraApi.deletePreset(response.body()!!)
     }
 
     @Test
@@ -111,7 +110,6 @@ class ExtraApiTest : BaseKtVoxApiTest() {
         val response2 = extraApi.updatePreset(preset.copy(id = presetId, name = "updated"))
         if (response2.code() == 500) return@runTest
         assert(response2.isSuccessful)
-        extraApi.deletePreset(presetId)
     }
 
     @Test

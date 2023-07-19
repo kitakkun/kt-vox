@@ -22,8 +22,6 @@ class DictApiTest : BaseKtVoxApiTest() {
             accentType = 0,
         )
         assert(response.isSuccessful)
-        val uuid = response.body() ?: throw Exception("uuid is null")
-        api.deleteUserDictWord(uuid)
     }
 
     @Test
@@ -40,7 +38,6 @@ class DictApiTest : BaseKtVoxApiTest() {
             accentType = 0,
         )
         assert(response.isSuccessful)
-        api.deleteUserDictWord(uuid)
     }
 
     @Test
