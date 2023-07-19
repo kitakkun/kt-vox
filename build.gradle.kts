@@ -24,8 +24,8 @@ dependencies {
         // FYI: https://github.com/InsertKoinIO/koin/issues/1526
         exclude(group = "junit", module = "junit")
         exclude("org.jetbrains.kotlin", "kotlin-test-junit")
-
     }
+    testImplementation(libs.testContainers)
 }
 
 tasks {

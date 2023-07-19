@@ -12,10 +12,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.create
 
-val ktVoxModule = module {
+fun ktVoxModule(baseUrl: String) = module {
     single<Retrofit> {
         Retrofit.Builder()
-            .baseUrl("http://127.0.0.1:50021")
+            .baseUrl(baseUrl)
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
