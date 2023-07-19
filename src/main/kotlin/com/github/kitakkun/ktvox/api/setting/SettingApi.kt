@@ -1,11 +1,8 @@
 package com.github.kitakkun.ktvox.api.setting
 
 import com.github.kitakkun.ktvox.annotation.ExperimentalKtVoxApi
-import okhttp3.RequestBody
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface SettingApi {
     @ExperimentalKtVoxApi
@@ -13,8 +10,10 @@ interface SettingApi {
     suspend fun getSetting(): Response<String>
 
     @ExperimentalKtVoxApi
+    @FormUrlEncoded
     @POST("/setting")
     suspend fun postSetting(
-        @Body requestBody: RequestBody,
+        @Field("cors_policy_mode") corsPolicyMode: String,
+        @Field("allow_origin") allowOrigin: List<String>,
     ): Response<String>
 }
