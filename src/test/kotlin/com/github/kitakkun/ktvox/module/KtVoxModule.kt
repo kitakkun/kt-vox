@@ -5,6 +5,7 @@ import com.github.kitakkun.ktvox.api.extra.ExtraApi
 import com.github.kitakkun.ktvox.api.query.QueryApi
 import com.github.kitakkun.ktvox.api.query.QueryCreateApi
 import com.github.kitakkun.ktvox.api.query.QueryEditApi
+import com.github.kitakkun.ktvox.api.setting.SettingApi
 import com.github.kitakkun.ktvox.api.synth.SynthApi
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -27,4 +28,5 @@ fun ktVoxModule(baseUrl: String) = module {
     factory<SynthApi> { get<Retrofit>().create() }
     factory<ExtraApi> { get<Retrofit>().create() }
     factory<DictApi> { get<Retrofit>().create() }
+    factory<SettingApi> { get<Retrofit>().create() }
 }

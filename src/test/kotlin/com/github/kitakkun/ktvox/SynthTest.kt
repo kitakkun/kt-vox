@@ -1,5 +1,6 @@
 package com.github.kitakkun.ktvox
 
+import com.github.kitakkun.ktvox.annotation.ExperimentalKtVoxApi
 import com.github.kitakkun.ktvox.api.query.QueryApi
 import com.github.kitakkun.ktvox.api.synth.SynthApi
 import kotlinx.coroutines.test.runTest
@@ -27,6 +28,22 @@ class SynthTest : BaseKtVoxApiTest() {
         // val file = File("output.wav")
         // val bytes = response.body()?.bytes() ?: throw Exception("body is null")
         // file.writeBytes(bytes)
+    }
+
+    @OptIn(ExperimentalKtVoxApi::class)
+    @Test
+    fun testPostCancellableSynthesis() = runTest {
+        val query = queryApi.createAudioQuery(
+            text = "こんにちは",
+            speaker = 0,
+        ).body()
+        assertNotNull(query)
+        val response = synthApi.postCancellableSynthesis(
+            speaker = 0,
+            audioQuery = query,
+        )
+        response.cancel()
+        assert(response.isCanceled)
     }
 
     @Test
