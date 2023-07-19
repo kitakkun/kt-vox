@@ -1,10 +1,11 @@
 [versions]
-kotlin = "1.8.21"
+kotlin = "1.9.0"
 retrofit = "2.9.0"
-gson = "2.8.9"
+gson = "2.10.1"
 serialization = "1.5.1"
-coroutines = "1.7.1"
+coroutines = "1.7.2"
 koin = "3.4.1"
+testcontainers = "1.18.3"
 
 [libraries]
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
@@ -15,6 +16,7 @@ serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", v
 coroutinesTest = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 koin = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koinTest = { module = "io.insert-koin:koin-test", version.ref = "koin" }
+testContainers = { module = "org.testcontainers:testcontainers", version.ref = "testcontainers" }
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

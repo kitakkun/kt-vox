@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.github.kitakkun"
-version = "0.0.2"
+version = "0.0.3"
 
 repositories {
     mavenCentral()
@@ -24,8 +24,8 @@ dependencies {
         // FYI: https://github.com/InsertKoinIO/koin/issues/1526
         exclude(group = "junit", module = "junit")
         exclude("org.jetbrains.kotlin", "kotlin-test-junit")
-
     }
+    testImplementation(libs.testContainers)
 }
 
 tasks {

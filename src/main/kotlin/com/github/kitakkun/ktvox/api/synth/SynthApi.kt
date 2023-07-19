@@ -21,7 +21,7 @@ interface SynthApi {
 
     @ExperimentalKtVoxApi
     @POST("/cancellable_synthesis")
-    suspend fun postCancellableSynthesis(
+    fun postCancellableSynthesis(
         @Query("speaker") speaker: Int,
         @Query("core_version") coreVersion: String? = null,
         @Body audioQuery: AudioQuery,

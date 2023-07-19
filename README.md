@@ -2,8 +2,7 @@
 
 [![](https://jitpack.io/v/kitakkun/kt-vox.svg)](https://jitpack.io/#kitakkun/kt-vox)
 
-KtVox is a wrapper library for the VOICEVOX API.
-It is implemented as a Retrofit API.
+KtVox is a wrapper library for the VOICEVOX API, implemented as a Retrofit API.
 
 ## Installation
 
@@ -22,20 +21,7 @@ dependencies {
 ### Create a KtVoxApi instance
 
 ```kotlin
-val retrofit = Retrofit.Builder()
-    .baseUrl("http://127.0.0.1:50021")
-    .addConverterFactory(ScalarsConverterFactory.create())
-    .addConverterFactory(GsonConverterFactory.create())
-    .build()
-val ktVoxApi = retrofit.create(KtVoxApi::class.java)
-```
-
-You may need additional dependencies below.
-
-```kotlin
-implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
-implementation("com.squareup.retrofit2:converter-scalars:$retrofitVersion")
-implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+val ktVoxApi = KtVoxApi.initialize("http://127.0.0.1:50021")
 ```
 
 ### Call API
@@ -61,51 +47,51 @@ launch {
 
 ### Query Creation
 
-- [x] POST `/audio_query`
-- [x] POST `/audio_query_from_preset`
+- :white_check_mark: POST `/audio_query`
+- :white_check_mark: POST `/audio_query_from_preset`
 
 ### Query Editing
 
-- [x] POST `/accent_phrases`
-- [x] POST `/mora_data`
-- [x] POST `/mora_length`
-- [x] POST `/mora_pitch`
+- :white_check_mark: POST `/accent_phrases`
+- :white_check_mark: POST `/mora_data`
+- :white_check_mark: POST `/mora_length`
+- :white_check_mark: POST `/mora_pitch`
 
 ### Synthesis
 
-- [x] POST `/synthesis`
-- [ ] POST `/cancellable_synthesis`
-- [x] POST `/multi_synthesis`
-- [x] POST `/morphable_targets`
-- [x] POST `/synthesis_morphing`
+- :white_check_mark: POST `/synthesis`
+- :white_check_mark: POST `/cancellable_synthesis`
+- :white_check_mark: POST `/multi_synthesis`
+- :white_check_mark: POST `/morphable_targets`
+- :white_check_mark: POST `/synthesis_morphing`
 
 ### Extra
 
-- [ ] POST `/connect_waves`
-- [x] GET `/presets`
-- [x] POST `/add_preset`
-- [x] POST `/update_preset`
-- [x] POST `/delete_preset`
-- [x] GET `/version`
-- [x] GET `/core_versions`
-- [x] GET `/speakers`
-- [x] GET `/speaker_info`
-- [ ] GET `/downloadable_libraries`
-- [ ] GET `/download_library`
-- [x] POST `/initialize_speaker`
-- [x] GET `/is_initialized_speaker`
-- [x] GET `/supported_devices`
-- [x] GET `/engine_manifest`
+- :white_large_square: POST `/connect_waves`
+- :white_check_mark: GET `/presets`
+- :white_check_mark: POST `/add_preset`
+- :white_check_mark: POST `/update_preset`
+- :white_check_mark: POST `/delete_preset`
+- :white_check_mark: GET `/version`
+- :white_check_mark: GET `/core_versions`
+- :white_check_mark: GET `/speakers`
+- :white_check_mark: GET `/speaker_info`
+- :white_large_square: GET `/downloadable_libraries`
+- :white_large_square: GET `/download_library`
+- :white_check_mark: POST `/initialize_speaker`
+- :white_check_mark: GET `/is_initialized_speaker`
+- :white_check_mark: GET `/supported_devices`
+- :white_check_mark: GET `/engine_manifest`
 
 ### User Dictionary
 
-- [x] GET `/user_dict`
-- [x] POST `/user_dict_word`
-- [x] PUT `/user_dict_word/{word_uuid}`
-- [x] DELETE `/user_dict_word/{word_uuid}`
-- [ ] POST `/import_user_dict`
+- :white_check_mark: GET `/user_dict`
+- :white_check_mark: POST `/user_dict_word`
+- :white_check_mark: PUT `/user_dict_word/{word_uuid}`
+- :white_check_mark: DELETE `/user_dict_word/{word_uuid}`
+- :white_check_mark: POST `/import_user_dict`
 
 ### Setting
 
-- [ ] GET `/setting`
-- [ ] POST `/setting`
+- :white_check_mark: GET `/setting`
+- :white_check_mark: POST `/setting`
