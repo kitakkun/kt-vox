@@ -1,9 +1,9 @@
 [versions]
 kotlin = "1.9.0"
 retrofit = "2.9.0"
-gson = "2.8.9"
+gson = "2.10.1"
 serialization = "1.5.1"
-coroutines = "1.7.1"
+coroutines = "1.7.2"
 koin = "3.4.1"
 testcontainers = "1.18.3"
 
