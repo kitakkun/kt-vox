@@ -1,12 +1,9 @@
-import org.gradle.kotlin.dsl.accessors.runtime.addConfiguredDependencyTo
-
 plugins {
-    kotlin("multiplatform")
+    kotlin("multiplatform") version libs.versions.kotlin
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.ktorfit)
     id("com.android.library")
-    id("de.jensklingenberg.ktorfit") version "1.0.0"
-    id("org.kodein.mock.mockmp") version "1.15.0"
     `maven-publish`
 }
 
@@ -14,6 +11,7 @@ group = "com.github.kitakkun"
 version = "0.0.3"
 
 repositories {
+    google()
     mavenCentral()
 }
 
@@ -43,8 +41,6 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(libs.ktorfit.lib)
-                implementation(kotlin("test"))
-                implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.ktor.client.content.negotiation)
                 implementation(libs.ktor.serialization.kotlinx.json)
             }
@@ -52,8 +48,8 @@ kotlin {
         val commonTest by getting {
             dependsOn(commonMain)
             dependencies {
+                implementation(kotlin("test"))
                 implementation(libs.coroutinesTest)
-                implementation(libs.koin)
             }
         }
         val androidMain by getting {
@@ -76,43 +72,28 @@ kotlin {
             dependencies {
                 implementation(libs.testContainers)
             }
-            addConfiguredDependencyTo(
-                dependencies,
-                implementationConfigurationName,
-                libs.koinTest
-            ) {
-                // FYI: https://github.com/InsertKoinIO/koin/issues/1526
-                exclude(group = "junit", module = "junit")
-                exclude(group = "org.jetbrains.kotlin", module = "kotlin-test-junit")
-            }
         }
         val jsMain by getting
     }
 }
 
 val ktorfitVersion = "1.6.0"
+
 dependencies {
     with("de.jensklingenberg.ktorfit:ktorfit-ksp:$ktorfitVersion") {
         add("kspCommonMainMetadata", this)
         add("kspJvm", this)
-        add("kspJvmTest", this)
         add("kspAndroid", this)
-        add("kspAndroidTest", this)
         add("kspIosX64", this)
-        add("kspIosX64Test", this)
         add("kspIosArm64", this)
-        add("kspIosArm64Test", this)
         add("kspIosSimulatorArm64", this)
-        add("kspIosSimulatorArm64Test", this)
         add("kspMacosX64", this)
-        add("kspMacosX64Test", this)
         add("kspJs", this)
-        add("kspJsTest", this)
     }
 }
 
 ktorfit {
-    version = "1.6.0"
+    version = ktorfitVersion
 }
 
 publishing {
@@ -135,8 +116,4 @@ android {
         minSdk = 21
     }
     namespace = "com.github.kitakkun.ktvox"
-}
-
-mockmp {
-    usesHelper = true
 }

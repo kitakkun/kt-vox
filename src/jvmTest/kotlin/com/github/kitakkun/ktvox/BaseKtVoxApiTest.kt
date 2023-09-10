@@ -1,15 +1,13 @@
 package com.github.kitakkun.ktvox
 
 import com.github.kitakkun.ktvox.api.KtVoxApi
-import org.koin.core.context.stopKoin
-import org.koin.test.KoinTest
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.containers.output.OutputFrame
 import org.testcontainers.utility.DockerImageName
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 
-abstract class BaseKtVoxApiTest : KoinTest {
+abstract class BaseKtVoxApiTest {
     private val imageName = DockerImageName.parse(
         "voicevox/voicevox_engine:cpu-ubuntu20.04-0.14.5"
     )
@@ -51,7 +49,6 @@ abstract class BaseKtVoxApiTest : KoinTest {
 
     @AfterTest
     fun tearDown() {
-        stopKoin()
         container.stop()
     }
 }
