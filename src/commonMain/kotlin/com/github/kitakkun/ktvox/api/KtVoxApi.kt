@@ -34,6 +34,11 @@ import kotlinx.serialization.json.Json
 interface KtVoxApi {
     companion object {
         fun initialize(serverUrl: String): KtVoxApi {
+            val baseUrl = if (serverUrl.endsWith("/")) {
+                serverUrl
+            } else {
+                "$serverUrl/"
+            }
             val httpClient = HttpClient {
                 install(ContentNegotiation) {
                     json(Json {
@@ -44,7 +49,7 @@ interface KtVoxApi {
             }
             val ktorfit = Ktorfit.Builder()
                 .httpClient(httpClient)
-                .baseUrl(serverUrl)
+                .baseUrl(baseUrl)
                 .converterFactories(
                     CallConverterFactory(),
                     UserDictMapConverterFactory(),
