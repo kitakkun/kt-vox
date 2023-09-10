@@ -18,10 +18,6 @@ repositories {
 kotlin {
     jvmToolchain(8)
 
-    js(IR) {
-        this.nodejs()
-        binaries.executable() // not applicable to BOTH, see details below
-    }
     jvm()
     androidTarget()
     listOf(
@@ -73,7 +69,6 @@ kotlin {
                 implementation(libs.testContainers)
             }
         }
-        val jsMain by getting
     }
 }
 
@@ -88,7 +83,6 @@ dependencies {
         add("kspIosArm64", this)
         add("kspIosSimulatorArm64", this)
         add("kspMacosX64", this)
-        add("kspJs", this)
     }
 }
 
