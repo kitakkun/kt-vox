@@ -2,9 +2,11 @@
 
 [![](https://jitpack.io/v/kitakkun/kt-vox.svg)](https://jitpack.io/#kitakkun/kt-vox)
 
-KtVox is a wrapper library for the VOICEVOX API, implemented as a Retrofit API.
+KtVox is a multiplatform wrapper library for the VOICEVOX API.
 
 ## Installation
+
+### General Project
 
 ```kotlin
 repositories {
@@ -13,6 +15,24 @@ repositories {
 
 dependencies {
     implementation("com.github.kitakkun:kt-vox:$version")
+}
+```
+
+### Kotlin Multiplatform Project
+
+```kotlin
+repositories {
+    maven("https://jitpack.io")
+}
+
+kotlin {
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation("com.github.kitakkun:kt-vox:$version")
+            }
+        }
+    }
 }
 ```
 
@@ -30,16 +50,16 @@ Note: You have to call the API in a coroutine scope.
 
 ```kotlin
 launch {
-    val response = api.createAudioQuery(
+    val query = api.createAudioQuery(
         text = "こんにちは",
         speaker = 0,
     )
-    if (response.isSuccessful) {
-        val audioQuery = response.body()
-        println(audioQuery)
-    } else {
-        println(response.errorBody())
-    }
+    val audio = api.postSynthesis(
+        speaker = 0,
+        audioQuery = query,
+    )
+    val file = File("audio.wav")
+    file.writeBytes(audio)
 }
 ```
 
@@ -67,7 +87,7 @@ launch {
 
 ### Extra
 
-- :white_large_square: POST `/connect_waves`
+- :white_check_mark: POST `/connect_waves`
 - :white_check_mark: GET `/presets`
 - :white_check_mark: POST `/add_preset`
 - :white_check_mark: POST `/update_preset`

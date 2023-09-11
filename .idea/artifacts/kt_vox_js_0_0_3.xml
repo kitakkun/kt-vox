@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="kt-vox-js-0.0.3">
+    <output-path>$PROJECT_DIR$/build/libs</output-path>
+    <root id="archive" name="kt-vox-js-0.0.3.jar">
+      <element id="module-output" name="kt-vox.jsMain" />
+    </root>
+  </artifact>
+</component>
